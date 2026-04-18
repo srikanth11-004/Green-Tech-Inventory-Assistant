@@ -17,15 +17,19 @@ def read_file(path):
 
 base = os.path.dirname(__file__)
 
-html     = read_file(os.path.join(base, "index.html"))
 css      = read_file(os.path.join(base, "styles.css"))
-config   = read_file(os.path.join(base, "config.js"))
 setup    = read_file(os.path.join(base, "setup.js"))
 ai_js    = read_file(os.path.join(base, "ai.js"))
 chatbot  = read_file(os.path.join(base, "chatbot.js"))
 app_js   = read_file(os.path.join(base, "app.js"))
 history  = read_file(os.path.join(base, "history.js"))
 sample   = read_file(os.path.join(base, "data/sample.json"))
+
+# Get API key from Streamlit secrets
+try:
+    gemini_key = st.secrets["GEMINI_API_KEY"]
+except:
+    gemini_key = ""
 
 # Inject everything into a single self-contained HTML page
 full_html = f"""
@@ -219,6 +223,9 @@ full_html = f"""
 <div id="toast" class="toast hidden"></div>
 
 <script>
+// Inject API key from Streamlit secrets
+window.__GEMINI_KEY__ = "{gemini_key}";
+
 // Inline sample data so no fetch needed
 const SAMPLE_DATA = {sample};
 
@@ -235,7 +242,6 @@ window.fetch = function(url, options) {{
 }};
 </script>
 
-<script>{config}</script>
 <script>{setup}</script>
 <script>{ai_js}</script>
 <script>{chatbot}</script>
@@ -246,4 +252,4 @@ window.fetch = function(url, options) {{
 </html>
 """
 
-components.html(full_html, height=900, scrolling=True)
+components.html(full_html, height=1200, scrolling=True)
