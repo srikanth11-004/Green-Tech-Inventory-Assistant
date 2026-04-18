@@ -765,3 +765,8 @@ input, select, textarea { font-family: inherit; }
   .navbar { gap: 0.5rem; }
   .nav-search { min-width: 150px; }
 }
+
+/* ===== STREAMLIT IFRAME FIX ===== */
+html, body { height: auto !important; overflow-y: auto !important; }
+.chat-toggle-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; }
+.chat-window { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999; }
