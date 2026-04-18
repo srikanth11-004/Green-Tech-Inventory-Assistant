@@ -74,7 +74,7 @@ const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models
 **What I Changed:**
 ```javascript
 // Changed to gemini-3-flash for better performance and cost-effectiveness
-const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash:generateContent?key=${key}`, {
 ```
 
 **Reason for Change:**
@@ -391,4 +391,3 @@ window.__GEMINI_KEY__ = "YOUR_API_KEY_HERE";
 
 ---
 
-**Built with ❤️ for sustainable inventory management**
