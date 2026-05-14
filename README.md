@@ -295,6 +295,46 @@ Browser Display
 - **Features:** Category detection, stockout prediction, expiry alerts, reorder recommendations, chatbot
 
 ---
+## 📐 Key Formulas
+
+### 1. Days Until Stockout
+```
+Days Left = Stock Quantity / (Sales Volume / 30)
+```
+**Example:**
+- Stock: 50 units
+- Monthly Sales: 90 units
+- Daily Rate: 90 ÷ 30 = 3 units/day
+- **Days Left: 50 ÷ 3 = 16.67 days**
+
+### 2. Days Until Expiry
+```
+Days to Expiry = (Expiration Date - Today) / 86,400,000 milliseconds
+```
+**Note:** 86,400,000 = milliseconds in 1 day
+
+### 3. Urgency Level
+```
+if Stock ≤ Reorder Level × 0.5  → Critical
+if Stock ≤ Reorder Level × 0.75 → High
+if Stock ≤ Reorder Level        → Medium
+else                             → Low
+```
+
+### 4. Sustainability Score (0-100)
+```
+Score = (Turnover Score × 0.4) + (Stock Health Score × 0.3) + (Expiry Score × 0.3)
+
+Where:
+- Turnover Score = min(Turnover Rate, 100) / 100 × 40
+- Stock Health Score = 30 if ratio ≤ 2, else decreasing
+- Expiry Score = 30 if > 30 days, 15 if ≤ 30 days, 5 if ≤ 7 days, 0 if expired
+```
+
+### 5. Total Inventory Value
+```
+Value = Σ(Stock Quantity × Unit Price) for all items
+```
 
 ## 💼 Business Impact
 
